@@ -1,104 +1,40 @@
-
-
+import React from 'react';
+import data from './data';
 function App() {
   return (
-    <div class="gridBox">
-    <header class="row">
+    <div className="gridBox">
+    <header className="row">
         <div>
-            <a class="brand" href="index.html">Mudinhas e afins</a>
-            <a class="subtitle" href="index.html">Horto online</a>
+            <a className="brand" href="/">Mudinhas e afins</a>
+            <a className="subtitle" href="/">Horto online</a>
         </div>
         <div>
-            <a href="cart.html">Carrinho</a>
-            <a href="signin.html">Admin</a>
+            <a href="/carrinho">Carrinho</a>
+            <a href="/admin_login">Admin</a>
         </div>
     </header>
     <main>
-        <div class="row center"> 
-            <div class="card">
-               <a href="product.html">
-                   <img class="medium" src="./images/planta.jpg" alt="product"/>
-               </a>
-               <div class="card-body">
-                <a href="product.html">
-                    <h2>Plantinha de teste</h2>                        
-                    <h3><i>O nome cientifico</i></h3>
-                </a>
-               </div>
-               <div class="price">
-                15,00
-               </div> 
-            </div>  
-            <div class="card">
-                <a href="product.html">
-                    <img class="medium" src="./images/planta.jpg" alt="product"/>
-                </a>
-                <div class="card-body">
-                 <a href="product.html">
-                     <h2>Plantinha de teste</h2>                        
-                     <h3><i>O nome cientifico</i></h3>
-                 </a>
-                </div>
-                <div class="price">
-                 15,00
-                </div> 
-             </div>
-             <div class="card">
-                <a href="product.html">
-                    <img class="medium" src="./images/planta.jpg" alt="product"/>
-                </a>
-                <div class="card-body">
-                 <a href="product.html">
-                     <h2>Plantinha de teste</h2>                        
-                     <h3><i>O nome cientifico</i></h3>
-                 </a>
-                </div>
-                <div class="price">
-                 15,00
-                </div> 
-             </div>
-             <div class="card">
-                <a href="product.html">
-                    <img class="medium" src="./images/planta.jpg" alt="product"/>
-                </a>
-                <div class="card-body">
-                 <a href="product.html">
-                     <h2>Plantinha de teste</h2>                        
-                     <h3><i>O nome cientifico</i></h3>
-                 </a>
-                </div>
-                <div class="price">
-                 15,00
-                </div> 
-             </div>
-             <div class="card">
-                <a href="product.html">
-                    <img class="medium" src="./images/planta.jpg" alt="product"/>
-                </a>
-                <div class="card-body">
-                 <a href="product.html">
-                     <h2>Plantinha de teste</h2>                        
-                     <h3><i>O nome cientifico</i></h3>
-                 </a>
-                </div>
-                <div class="price">
-                 15,00
-                </div> 
-             </div>
-             <div class="card">
-                <a href="product.html">
-                    <img class="medium" src="./images/planta.jpg" alt="product"/>
-                </a>
-                <div class="card-body">
-                 <a href="product.html">
-                     <h2>Plantinha de teste</h2>                        
-                     <h3><i>O nome cientifico</i></h3>
-                 </a>
-                </div>
-                <div class="price">
-                 15,00
-                </div> 
-            </div>     
+        <div className="row center"> 
+        {data.produtos.map((produto)=>(
+            <div key = {produto.id} className="card">
+            <a href={`/produto/${produto.id}`}>
+                <img className="medium" src={produto.imagem} alt={produto.id}/>
+            </a>
+            <div className="card-body">
+             <a href={`/produto/${produto.id}`}>
+                 <h3>{produto.nome_popular}</h3>                        
+                 <h2><i>{produto.nome_cientifico}</i></h2>
+             </a>
+            </div>
+            <div className="price">
+            <h1> R$:{produto.preco}</h1>
+            </div> 
+            <div className="stock">
+             <h1>Estoque:{produto.estoque}</h1>
+            </div> 
+         </div>  
+        ))}
+            
         </div>
     </main>
     <footer>
