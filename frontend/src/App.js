@@ -1,0 +1,111 @@
+
+
+function App() {
+  return (
+    <div class="gridBox">
+    <header class="row">
+        <div>
+            <a class="brand" href="index.html">Mudinhas e afins</a>
+            <a class="subtitle" href="index.html">Horto online</a>
+        </div>
+        <div>
+            <a href="cart.html">Carrinho</a>
+            <a href="signin.html">Admin</a>
+        </div>
+    </header>
+    <main>
+        <div class="row center"> 
+            <div class="card">
+               <a href="product.html">
+                   <img class="medium" src="./images/planta.jpg" alt="product"/>
+               </a>
+               <div class="card-body">
+                <a href="product.html">
+                    <h2>Plantinha de teste</h2>                        
+                    <h3><i>O nome cientifico</i></h3>
+                </a>
+               </div>
+               <div class="price">
+                15,00
+               </div> 
+            </div>  
+            <div class="card">
+                <a href="product.html">
+                    <img class="medium" src="./images/planta.jpg" alt="product"/>
+                </a>
+                <div class="card-body">
+                 <a href="product.html">
+                     <h2>Plantinha de teste</h2>                        
+                     <h3><i>O nome cientifico</i></h3>
+                 </a>
+                </div>
+                <div class="price">
+                 15,00
+                </div> 
+             </div>
+             <div class="card">
+                <a href="product.html">
+                    <img class="medium" src="./images/planta.jpg" alt="product"/>
+                </a>
+                <div class="card-body">
+                 <a href="product.html">
+                     <h2>Plantinha de teste</h2>                        
+                     <h3><i>O nome cientifico</i></h3>
+                 </a>
+                </div>
+                <div class="price">
+                 15,00
+                </div> 
+             </div>
+             <div class="card">
+                <a href="product.html">
+                    <img class="medium" src="./images/planta.jpg" alt="product"/>
+                </a>
+                <div class="card-body">
+                 <a href="product.html">
+                     <h2>Plantinha de teste</h2>                        
+                     <h3><i>O nome cientifico</i></h3>
+                 </a>
+                </div>
+                <div class="price">
+                 15,00
+                </div> 
+             </div>
+             <div class="card">
+                <a href="product.html">
+                    <img class="medium" src="./images/planta.jpg" alt="product"/>
+                </a>
+                <div class="card-body">
+                 <a href="product.html">
+                     <h2>Plantinha de teste</h2>                        
+                     <h3><i>O nome cientifico</i></h3>
+                 </a>
+                </div>
+                <div class="price">
+                 15,00
+                </div> 
+             </div>
+             <div class="card">
+                <a href="product.html">
+                    <img class="medium" src="./images/planta.jpg" alt="product"/>
+                </a>
+                <div class="card-body">
+                 <a href="product.html">
+                     <h2>Plantinha de teste</h2>                        
+                     <h3><i>O nome cientifico</i></h3>
+                 </a>
+                </div>
+                <div class="price">
+                 15,00
+                </div> 
+            </div>     
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</div>
+  );
+}
+
+export default App;
