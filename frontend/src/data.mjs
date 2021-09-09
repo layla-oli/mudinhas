@@ -6,7 +6,7 @@ const data = {
           nome_popular: "Capim Limão (muda)",
           nome_cientifico: "Cymbopogon citratus",
           preco: 10.00,
-          estoque: 20,
+          estoque: 222,
           detalhes: "detalhes"
         },
         {
@@ -15,7 +15,7 @@ const data = {
           nome_popular: "Erva-doce (muda)",
           nome_cientifico: "Pimpinella anisum",
           preco: 15.00,
-          estoque: 40,
+          estoque: 0,
           detalhes: "detalhes"
         },
         {
