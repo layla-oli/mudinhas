@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import data from '../data';
 
 export default function ProductScreen(props){
-    const produto=data.produtos.find(x => x.id === props.match.params.id)
-    // if(!produto){
-    //     return <div> Produto não encontrado</div>
-    // }
+    const produto = data.produtos.find((x) => x.id === Number(props.match.params.id));
+    if(!produto){
+         return <div> Produto não encontrado</div>
+     }
     return( 
     <div>
-        <h1>teste testando</h1>
-        <div className="row">
+         <Link to="/">Voltar</Link>
+        <div className="row top">
             <div className="col-2">
                 <img className="large" src={produto.imagem} alt={produto.nome_popular}></img>
             </div>
@@ -20,7 +21,7 @@ export default function ProductScreen(props){
                         <h1>{produto.nome_cientifico}</h1>
                     </li>
                     <li>
-                        Preço: R${produto.preco}
+                        Preço: R${produto.preco.toFixed(2)}
                     </li>
                     <li>
                         Sobre: <p>{produto.detalhes}</p>

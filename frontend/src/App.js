@@ -10,7 +10,7 @@ function App() {
     <header className="row">
         <div>
             <a className="brand" href="/">Mudinhas e afins</a>
-            <a className="subtitle" href="/">Horto online</a>
+            <br /><span><a className="subtitle" href="/">Horto online</a></span>
         </div>
         <div>
             <a href="/carrinho">Carrinho</a>

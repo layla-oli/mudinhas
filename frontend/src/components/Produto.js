@@ -14,7 +14,7 @@ export default function Produto(props) {
              </a>
             </div>
             <div className="price">
-            <h1> R$:{produto.preco}</h1>
+            <h1> R$:{produto.preco.toFixed(2)}</h1>
             </div> 
             <div className="stock">
              <h1>Estoque:{produto.estoque}</h1>
