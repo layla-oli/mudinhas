@@ -4,7 +4,7 @@ import data from '../frontend/src/data.mjs'; /*mudar a localização de data.js 
 const app = express();
 
 app.get('/api/produtos/:id', (req, res) => {
-  const product = data.produtos.find((x) => x.id === req.params.id);
+  const product = data.produtos.find((x) => x.id === Number(req.params.id));
   if (product) {
     res.send(product);
   } else {
