@@ -3,19 +3,21 @@ import data from '../data';
 
 export default function ProductScreen(props){
     const produto=data.produtos.find(x => x.id === props.match.params.id)
-    if(!produto){
-        return <div> Produto não encontrado</div>
-    }
+    // if(!produto){
+    //     return <div> Produto não encontrado</div>
+    // }
     return( 
     <div>
+        <h1>teste testando</h1>
         <div className="row">
             <div className="col-2">
-                <img className="large" src={produto.img} alt={produto.nome_popular}></img>
+                <img className="large" src={produto.imagem} alt={produto.nome_popular}></img>
             </div>
             <div className="col-1">
                 <ul>
                     <li>
                         <h1>{produto.nome_popular}</h1>
+                        <h1>{produto.nome_cientifico}</h1>
                     </li>
                     <li>
                         Preço: R${produto.preco}
