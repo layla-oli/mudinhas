@@ -1,5 +1,6 @@
 import React from 'react';
 import data from './data';
+import Produto from './components/Produto';
 function App() {
   return (
     <div className="gridBox">
@@ -16,23 +17,7 @@ function App() {
     <main>
         <div className="row center"> 
         {data.produtos.map((produto)=>(
-            <div key = {produto.id} className="card">
-            <a href={`/produto/${produto.id}`}>
-                <img className="medium" src={produto.imagem} alt={produto.id}/>
-            </a>
-            <div className="card-body">
-             <a href={`/produto/${produto.id}`}>
-                 <h3>{produto.nome_popular}</h3>                        
-                 <h2><i>{produto.nome_cientifico}</i></h2>
-             </a>
-            </div>
-            <div className="price">
-            <h1> R$:{produto.preco}</h1>
-            </div> 
-            <div className="stock">
-             <h1>Estoque:{produto.estoque}</h1>
-            </div> 
-         </div>  
+        <Produto key={produto.id} produto={produto}></Produto>
         ))}
             
         </div>

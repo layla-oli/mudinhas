@@ -92,6 +92,8 @@ img.medium{ /*AQUI */
   object-fit: cover;
   width: 100%;
   height: 250px;
+  color: #f0c040;
+  margin: 0.1rem;
 }
 
 /* Card */
