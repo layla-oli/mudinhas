@@ -3,6 +3,14 @@ import data from '../frontend/src/data.mjs'; /*mudar a localização de data.js 
 
 const app = express();
 
+app.get('/api/produtos/:id', (req, res) => {
+  const product = data.produtos.find((x) => x.id === req.params.id);
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({ message: 'Produto Não Encontrado' });
+  }
+});
 app.get('/api/produtos', (req, res) => {
   res.send(data.produtos);
 });
