@@ -1,8 +1,11 @@
 import React from 'react';
-import data from './data';
-import Produto from './components/Produto';
+import { BrowserRouter, Route} from 'react-router-dom'
+import HomeScreen from './screens/HomeScreen';
+import ProductScreen from './screens/ProductScreen';
+
 function App() {
   return (
+    <BrowserRouter>
     <div className="gridBox">
     <header className="row">
         <div>
@@ -15,17 +18,15 @@ function App() {
         </div>
     </header>
     <main>
-        <div className="row center"> 
-        {data.produtos.map((produto)=>(
-        <Produto key={produto.id} produto={produto}></Produto>
-        ))}
-            
-        </div>
+    <Route path="/product/:id" component={ProductScreen}></Route>
+    <Route path="/" component={HomeScreen} exact></Route>
+    
     </main>
     <footer>
 
     </footer>
 </div>
+</BrowserRouter>
   );
 }
 
