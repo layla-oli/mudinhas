@@ -5,7 +5,7 @@ export default function Produto(props) {
   return (
     <div key = {produto.id} className="card">
             <a href={`/produto/${produto.id}`}>
-                <img className="medium" src={produto.imagem} alt={produto.id}/>
+                <img className="medium" src={produto.imagem} alt={produto.nome_cientifico}/>
             </a>
             <div className="card-body">
              <a href={`/produto/${produto.id}`}>
