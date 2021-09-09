@@ -1,27 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import Produto from '../components/Produto';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { listProducts } from '../actions/productActions';
 
 export default function HomeScreen() {
-    const [produtos, setProdutos] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const dispatch = useDispatch();
+    const productList = useSelector((state) => state.productList);
+    const { loading, error, produtos } = productList;
     useEffect(() => { //função executada uma única vez, quando o componente é renderizado
-        const fetchData = async () => { //função para pegar os produtos do backend através de requisição
-            try {
-                setLoading(true);//enquanto n carregar, loading é true
-                const { data } = await axios.get('/api/produtos');
-                setLoading(false);//dps de carregar, passa a ser false
-                setProdutos(data);
-            } catch (err) {
-                setError(err.message);//se der aglum erro ao carregar os produtos
-                setLoading(false);//loading = false
-            }
-        };
-        fetchData();
-    }, []);
+        dispatch(listProducts());
+    }, [dispatch]);
     return (
         <div>
             {loading ? (
@@ -29,7 +19,7 @@ export default function HomeScreen() {
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>//se ouve um erro, usa o componente MessageBox
                 //se nenhum do dois acontecer, renderiza os produtos
-            ) : (<div className="row center"> 
+            ) : (<div className="row center">
                 {produtos.map((produto) => (
                     <Produto key={produto.id} produto={produto}></Produto>
                 ))}

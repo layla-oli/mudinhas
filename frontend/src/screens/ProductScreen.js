@@ -34,7 +34,7 @@ export default function ProductScreen(props){
                         <li>
                             <div className="row">
                                 <div>Preço</div>
-                                <div className="price">R${produto.preco}</div>
+                                <div className="price">R${produto.preco.toFixed(2)}</div>
                             </div>
                         </li>
                         <li>
