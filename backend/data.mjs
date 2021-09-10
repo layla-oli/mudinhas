@@ -14,10 +14,10 @@ const data = {
       isAdmin: false,
     },
   ],
-    produtos:[
+    products:[
         {
           //id: 1,
-          imagem:'/images/produtos/Cymbopogon_citratus.jpg',
+          imagem:'/images/products/Cymbopogon_citratus.jpg',
           nome_popular: "Capim Limão (muda)",
           nome_cientifico: "Cymbopogon citratus",
           preco: 10.00,
@@ -26,7 +26,7 @@ const data = {
         },
         {
           //id: 2,
-          imagem:'/images/produtos/Pimpinella_anisum.jpg',
+          imagem:'/images/products/Pimpinella_anisum.jpg',
           nome_popular: "Erva-doce (muda)",
           nome_cientifico: "Pimpinella anisum",
           preco: 15.00,
@@ -35,7 +35,7 @@ const data = {
         },
         {
           //id: 3,
-          imagem:'/images/produtos/Eucalyptus_deglupta.jpg',
+          imagem:'/images/products/Eucalyptus_deglupta.jpg',
           nome_popular: "Eucalipto Arco-íris (muda)",
           nome_cientifico: "Eucalyptus deglupta",
           preco: 20.00,
@@ -44,7 +44,7 @@ const data = {
         },
         {
           //id: 4,
-          imagem:'/images/produtos/Pereskia_aculeata.jpg',
+          imagem:'/images/products/Pereskia_aculeata.jpg',
           nome_popular: "Ora Pro Nóbis por Estaca (muda)",
           nome_cientifico: "Pereskia aculeata",
           preco: 33.15,
@@ -53,7 +53,7 @@ const data = {
         },
         {
           //id: 5,
-          imagem:'/images/produtos/Aloe_vera.jpg',
+          imagem:'/images/products/Aloe_vera.jpg',
           nome_popular: "Babosa (muda)",
           nome_cientifico: "Aloe vera",
           preco: 40.00,
@@ -62,7 +62,7 @@ const data = {
         },
         {
           //id: 6,
-          imagem:'/images/produtos/Adenium_obesum.jpg',
+          imagem:'/images/products/Adenium_obesum.jpg',
           nome_popular: "Rosa do Deserto Branca e Rosa (muda)",
           nome_cientifico: "Adenium obesum",
           preco: 49.90,
@@ -71,7 +71,7 @@ const data = {
         },
         {
           //id: 7,
-          imagem:'/images/produtos/Oncidium_varicosum.jpg',
+          imagem:'/images/products/Oncidium_varicosum.jpg',
           nome_popular: "Orquídea Amarela Chuva de Ouro (planta adulta)",
           nome_cientifico: "Oncidium varicosum",
           preco: 150.00,
@@ -80,7 +80,7 @@ const data = {
         },
         {
           //id: 8,
-          imagem:'/images/produtos/Dendrobium_bigibbum.jpg',
+          imagem:'/images/products/Dendrobium_bigibbum.jpg',
           nome_popular: "Orquídea Roxa Denphal (planta adulta)",
           nome_cientifico: "Dendrobium bigibbum",
           preco: 160.00,
@@ -89,7 +89,7 @@ const data = {
         },
         {
           //id: 9,
-          imagem:'/images/produtos/Helianthus_annuus.jpg',
+          imagem:'/images/products/Helianthus_annuus.jpg',
           nome_popular: "Girassol (muda)",
           nome_cientifico: "Helianthus annuus",
           preco: 32.00,
@@ -98,7 +98,7 @@ const data = {
         },
         {
           //id: 10,
-          imagem:'/images/produtos/Impatiens_parviflora.jpg',
+          imagem:'/images/products/Impatiens_parviflora.jpg',
           nome_popular: "Maria-sem-vergonha (muda)",
           nome_cientifico: "Impatiens parviflora",
           preco: 10.00,
@@ -107,7 +107,7 @@ const data = {
         },
         {
           //id: 11,
-          imagem:'/images/produtos/Lavandula_dentata.jpg',
+          imagem:'/images/products/Lavandula_dentata.jpg',
           nome_popular: "Lavanda Dentata (Francesa) (muda)",
           nome_cientifico: "Lavandula dentata",
           preco: 42.00,
@@ -116,7 +116,7 @@ const data = {
         },
         {
           //id: 12,
-          imagem:'/images/produtos/Salvia_rosmarinus.jpg',
+          imagem:'/images/products/Salvia_rosmarinus.jpg',
           nome_popular: "Alecrim (muda)",
           nome_cientifico: "Salvia rosmarinus",
           preco: 2,
@@ -125,7 +125,7 @@ const data = {
         },
         {
           //id: 13,
-          imagem:'/images/produtos/Arnica_montana.jpg',
+          imagem:'/images/products/Arnica_montana.jpg',
           nome_popular: "Arnica (muda)",
           nome_cientifico: "Arnica montana",
           preco: 35.00,
@@ -134,7 +134,7 @@ const data = {
         },
         {
           //id: 14,
-          imagem:'/images/produtos/Mentha_crispata.jpg',
+          imagem:'/images/products/Mentha_crispata.jpg',
           nome_popular: "Hortelã Comum (muda)",
           nome_cientifico: "Mentha crispata",
           preco: 2.00,
@@ -143,7 +143,7 @@ const data = {
         },
         {
           //id: 15,
-          imagem:'/images/produtos/Cymbopogon_nardus.jpg',
+          imagem:'/images/products/Cymbopogon_nardus.jpg',
           nome_popular: "Citronela (muda)",
           nome_cientifico: "Cymbopogon nardus",
           preco: 6.00,
@@ -152,7 +152,7 @@ const data = {
         },
         {
           //id: 16,
-          imagem:'/images/produtos/Melissa_officinalis.jpg',
+          imagem:'/images/products/Melissa_officinalis.jpg',
           nome_popular: "Erva-cidreira verdadeira (Melissa) (muda)",
           nome_cientifico: "Melissa officinalis",
           preco: 3.00,
@@ -161,7 +161,7 @@ const data = {
         },
         {
           //id: 17,
-          imagem:'/images/produtos/Stapelia_hirsuta.jpg',
+          imagem:'/images/products/Stapelia_hirsuta.jpg',
           nome_popular: "Cacto Estrela (vaso)",
           nome_cientifico: "Stapelia hirsuta",
           preco: 22.00,
@@ -170,7 +170,7 @@ const data = {
         },
         {
           //id: 18,
-          imagem:'/images/produtos/Syzygium_aromaticum.jpg',
+          imagem:'/images/products/Syzygium_aromaticum.jpg',
           nome_popular: "Cravo da Índia (muda)",
           nome_cientifico: "Syzygium aromaticum",
           preco: 20.00,
@@ -179,7 +179,7 @@ const data = {
         },
         {
           //id: 19,
-          imagem:'/images/produtos/Saintpaulia_ionantha.jpg',
+          imagem:'/images/products/Saintpaulia_ionantha.jpg',
           nome_popular: "Violeta Lilás (muda)",
           nome_cientifico: "Saintpaulia ionantha",
           preco: 5.00,
@@ -188,7 +188,7 @@ const data = {
         },
         {
           //id: 20,
-          imagem:'/images/produtos/Epipremnum_aureum.jpg',
+          imagem:'/images/products/Epipremnum_aureum.jpg',
           nome_popular: "Jibóia (Hera-do-diabo) (planta adulta)",
           nome_cientifico: "Epipremnum aureum",
           preco: 27.00,

@@ -25,7 +25,7 @@ export default function ProductScreen(props) {
                 <LoadingBox></LoadingBox> //enquanto estiver carregando, usa o componente LoadingBox
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>//se ouve um erro, usa o componente MessageBox
-                //se nenhum do dois acontecer, renderiza os detalhes do produto
+                //se nenhum do dois acontecer, renderiza os detalhes do product
             ) : (
                 <div>
                     <Link to="/">Voltar</Link>
@@ -72,7 +72,7 @@ export default function ProductScreen(props) {
                                                             value={qty}
                                                             onChange={(e) => setQty(e.target.value)}
                                                         >
-                                                            {//limita até 100 produtos por vez 
+                                                            {//limita até 100 products por vez 
                                                             [...Array(product.estoque>100?100:product.estoque).keys()].map(
                                                                 (x) => (
                                                                     <option key={x + 1} value={x + 1}>

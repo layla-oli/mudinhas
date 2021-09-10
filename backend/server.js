@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/mudinhas', {
   //useCreateIndex: true,
 });
 
-app.use('/api/produtos', productRouter);
+app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 app.get('/', (req, res) => {
   res.send('Servidor está pronto');

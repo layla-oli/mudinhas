@@ -34,7 +34,7 @@ export default function CartScreen(props) {
         <h1>Carrinho de compras</h1>
         {cartItems.length === 0 ? (
           <MessageBox>
-            O carrinho está vazio <Link to="/">Ver lista de produtos para comprar </Link>
+            O carrinho está vazio <Link to="/">Ver lista de products para comprar </Link>
           </MessageBox>
         ) : (
           <ul>
@@ -49,7 +49,7 @@ export default function CartScreen(props) {
                     ></img>
                   </div>
                   <div className="min-30">
-                    <Link to={`/produto/${item.product}`}>
+                    <Link to={`/product/${item.product}`}>
                       {item.nome_popular}
                       <br /><span>
                         {item.nome_cientifico}
@@ -61,11 +61,11 @@ export default function CartScreen(props) {
                       value={item.qty}
                       onChange={(e) =>
                         dispatch(
-                          addToCart(item.product, e.target.value)
+                          addToCart(item.product, Number(e.target.value))
                         )
                       }
                     >
-                      {//limita até 100 produtos por vez 
+                      {//limita até 100 products por vez 
                         [...Array(item.estoque > 100 ? 100 : item.estoque).keys()].map(
                           (x) => (
                             <option key={x + 1} value={x + 1}>

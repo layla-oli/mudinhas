@@ -29,7 +29,7 @@ function App() {
     </header>
     <main>
     <Route path="/cart/:id?" component={CartScreen}></Route> {/*Usa-se o ? para dizer que por o id é opcional, ou seja, sem o id vai para o carrinho */}
-    <Route path="/produto/:id" component={ProductScreen}></Route>
+    <Route path="/product/:id" component={ProductScreen}></Route>
     <Route path="/" component={HomeScreen} exact></Route>
     
     </main>

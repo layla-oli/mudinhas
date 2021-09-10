@@ -4,9 +4,9 @@ import data from '../data.mjs';
 import Product from '../models/productModel.js';
 
 const productRouter = express.Router();
-//a partir de /api/produtos
+//a partir de /api/products
 productRouter.get(
-  '/',// /api/produtos/ recupera os produtos do bd
+  '/',// /api/products/ recupera os products do bd
   expressAsyncHandler(async (req, res) => {
     const products = await Product.find({});
     res.send(products);
@@ -14,16 +14,16 @@ productRouter.get(
 );
 
 productRouter.get(
-  '/seed',// /api/produtos/seed insere no bd
+  '/seed',// /api/products/seed insere os produtos do data.mjs no bd
   expressAsyncHandler(async (req, res) => {//expressAsyncHandler permite capturar erros
-    // await Product.remove({});//deletar todos os produtos
-    const createdProducts = await Product.insertMany(data.produtos);
+    // await Product.remove({});//deletar todos os products
+    const createdProducts = await Product.insertMany(data.products);
     res.send({ createdProducts });
   })
 );
 
 productRouter.get(
-  '/:id',///api/produtos/:id recupera um produto do bd a partir de seu id 
+  '/:id',///api/products/:id recupera um product do bd a partir de seu id 
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {

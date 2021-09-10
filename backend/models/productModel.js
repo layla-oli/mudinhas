@@ -13,6 +13,6 @@ const productSchema = new mongoose.Schema(
         timestamps: true,// informações de quando um registro foi criado e alterado.
     }
 );
-const Product = mongoose.model('Produto', productSchema);
+const Product = mongoose.model('Product', productSchema);
 
 export default Product;
