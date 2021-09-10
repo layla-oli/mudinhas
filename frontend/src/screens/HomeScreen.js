@@ -21,7 +21,7 @@ export default function HomeScreen() {
                 //se nenhum do dois acontecer, renderiza os produtos
             ) : (<div className="row center">
                 {produtos.map((produto) => (
-                    <Produto key={produto.id} produto={produto}></Produto>
+                    <Produto key={produto._id} produto={produto}></Produto>
                 ))}
             </div>)
             }

@@ -1,7 +1,7 @@
 import express from 'express';
-import data from './data.mjs';
 import userRouter from './routers/userRouter.js';
 import mongoose from 'mongoose';
+import productRouter from './routers/productRouter.js';
 
 const app = express();
 //Conexão com o banco de dados
@@ -11,17 +11,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/mudinhas', {
   //useCreateIndex: true,
 });
 
-app.get('/api/produtos/:id', (req, res) => {
-  const product = data.produtos.find((x) => x.id === Number(req.params.id));
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: 'Produto Não Encontrado' });
-  }
-});
-app.get('/api/produtos', (req, res) => {
-  res.send(data.produtos);
-});
+app.use('/api/produtos', productRouter);
 app.use('/api/users', userRouter);
 app.get('/', (req, res) => {
   res.send('Servidor está pronto');
