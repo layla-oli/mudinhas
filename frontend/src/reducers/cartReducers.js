@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM } from '../constants/cartConstants';
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants';
 
 export const cartReducer = (state = { cartItems: [] }, action) => {
   switch (action.type) {
@@ -15,7 +15,14 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       } else { // se o item não existe no carrinho, adiciona-o ao carrinho
         return { ...state, cartItems: [...state.cartItems, item] };//concatena o array de itens com o item novo
       }
+    case CART_REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((x) => x.product !== action.payload),
+        //deixa apenas os items que não forem do produto deletado
+      };
     default:
       return state;
   }
 };
+
