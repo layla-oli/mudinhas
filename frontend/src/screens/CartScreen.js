@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../actions/cartActions';
 
 export default function CartScreen(props) {
   const productId = props.match.params.id;
@@ -8,7 +10,13 @@ export default function CartScreen(props) {
   if (qty <= 0)// se qtd for menor ou igual a 0, seta qtd para 1
     qty = 1;
   else if (qty > 100)//se for maior que 100, seta p 100
-    qty = 100; 
+    qty = 100;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (productId) { //se existir um productId
+      dispatch(addToCart(productId, qty)); //add ao carrinho
+    }
+  }, [dispatch, productId, qty]);
   return (
     <div>
       <h1>Cart Screen</h1>

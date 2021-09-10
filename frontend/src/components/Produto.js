@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Produto(props) {
   const { produto } = props;
   return (
     <div key = {produto.id} className="card">
-            <a href={`/produto/${produto.id}`}>
+            <Link to={`/produto/${produto.id}`}>
                 <img className="medium" src={produto.imagem} alt={produto.nome_cientifico}/>
-            </a>
+            </Link>
             <div className="card-body">
-             <a href={`/produto/${produto.id}`}>
+             <Link to={`/produto/${produto.id}`}>
                  <h3>{produto.nome_popular}</h3>                        
                  <h2><i>{produto.nome_cientifico}</i></h2>
-             </a>
+             </Link>
             </div>
             <div className="price">
             <h1> R$:{produto.preco.toFixed(2)}</h1>
