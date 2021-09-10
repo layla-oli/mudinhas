@@ -4,7 +4,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import { useSelector } from 'react-redux';
-
+import SigninScreen from './screens/SigninScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -24,14 +24,14 @@ function App() {
                 <span className="badge">{cartItems.length}</span>
               )}
             </Link>
-            <Link to="/admin-login">Admin</Link>
+            <Link to="/signin">Entrar</Link>
         </div>
     </header>
     <main>
     <Route path="/cart/:id?" component={CartScreen}></Route> {/*Usa-se o ? para dizer que por o id é opcional, ou seja, sem o id vai para o carrinho */}
     <Route path="/product/:id" component={ProductScreen}></Route>
     <Route path="/" component={HomeScreen} exact></Route>
-    
+    <Route path="/signin" component={SigninScreen}></Route> 
     </main>
     <footer>
 
