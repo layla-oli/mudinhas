@@ -2,8 +2,15 @@ import express from 'express';
 import userRouter from './routers/userRouter.js';
 import mongoose from 'mongoose';
 import productRouter from './routers/productRouter.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //Conexão com o banco de dados
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/mudinhas', {
   useNewUrlParser: true,
@@ -13,6 +20,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/mudinhas', {
 
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
+
 app.get('/', (req, res) => {
   res.send('Servidor está pronto');
 });
