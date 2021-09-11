@@ -9,7 +9,10 @@ import {
   userRegisterReducer,
   userSigninReducer,
 } from './reducers/userReducers';
-import { orderCreateReducer } from './reducers/orderReducers';
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+} from './reducers/orderReducers';
 
 const initialState = {
   userSignin: {
@@ -24,7 +27,7 @@ const initialState = {
     shippingAddress: localStorage.getItem('shippingAddress')
       ? JSON.parse(localStorage.getItem('shippingAddress'))
       : {},
-      paymentMethod: 'Pix',
+    paymentMethod: 'Pix',
   },
 };
 //"agrupando" os reducers criados nos arquivos de Reducers
@@ -35,6 +38,7 @@ const reducer = combineReducers({
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
   orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
 
 });
 //criando o store

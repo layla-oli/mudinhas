@@ -25,6 +25,7 @@ export default function PlaceOrderScreen(props) {
     //Calculando preço total
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
     const dispatch = useDispatch();
+    
     const placeOrderHandler = () => {
         dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
     };

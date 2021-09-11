@@ -22,7 +22,7 @@ const data = {
           nome_cientifico: "Cymbopogon citratus",
           preco: 10.00,
           estoque: 222,
-          detalhes: "detalhes"
+          detalhes: "O capim limão é uma planta rica em terpenos, flavonoides e compostos fenólicos que proporcionam efeito antioxidante. Por causa disso, é considerada uma planta medicinal, podendo ser utilizada para melhorar a digestão, a pressão arterial e como um anti-inflamatório natural."
         },
         {
           //id: 2,

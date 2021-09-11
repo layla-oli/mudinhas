@@ -43,7 +43,7 @@ export default function ProductScreen(props) {
                                     Preço: R${product.preco.toFixed(2)}
                                 </li>
                                 <li>
-                                    Sobre: <p>{product.detalhes}</p>
+                                    Sobre: <p className="detalhes">{product.detalhes}</p>
                                 </li>
                             </ul>
                         </div>
