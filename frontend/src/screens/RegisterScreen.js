@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { register, signout } from '../actions/userActions';
+import { register, clearError } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
@@ -17,23 +17,24 @@ export default function RegisterScreen(props) {
     /* ERRO AQUI: a msg de erro persite msm se voltarmos a página inicial, e devido a isso para redirecionar, clicamos duas vezes no botão */
     const userRegister = useSelector((state) => state.userRegister);//hook para pegar o estado do registro de usuário no store
     const { userInfo, loading, error } = userRegister;
-    const dispatch = useDispatch();
+    const dispatch =  useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
         if (senha !== confirmaSenha) {
             alert('Senhas não coincidem!');
         } else {
             dispatch(register(nome, email, senha));
-            if (userInfo && !error) {
+            /*if (userInfo && !error) {
                 props.history.push(redirect);
-            }
+            }*/
         }
     };
-   /*useEffect(() => {
-        if (userInfo) {
-            dispatch(signout());
+   useEffect(() => {
+        if (userInfo && !error ) {
+            props.history.push(redirect);
         }
-      }, [dispatch, props.history, redirect, userInfo]);*/
+
+      }, [dispatch, error, props.history, redirect, userInfo]);
     return (
         <div>
             <form className="form" onSubmit={submitHandler}>

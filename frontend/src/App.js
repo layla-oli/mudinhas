@@ -4,7 +4,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import { useDispatch, useSelector } from 'react-redux';
-import { signout } from './actions/userActions';
+import { signout, clearError } from './actions/userActions';
 import SigninScreen from './screens/SigninScreen';
 import RegisterScreen from './screens/RegisterScreen.js';
 
@@ -17,16 +17,22 @@ function App() {
   const signoutHandler = () => {
     dispatch(signout());
   };
+  const homeHandler = () => {
+    dispatch(clearError());
+  };
+  const cartHandler = () => {
+    dispatch(clearError());
+  };
   return (
     <BrowserRouter>
     <div className="gridBox">
     <header className="row">
         <div>
-            <Link  className="brand" to="/">Mudinhas e afins</Link>
-            <br /><span><Link  className="subtitle" to="/">Horto online</Link></span>
+            <Link  className="brand" to="/" onClick = {homeHandler}>Mudinhas e afins</Link>
+            <br /><span><Link  className="subtitle" to="/" onClick = {homeHandler}>Horto online</Link></span>
         </div>
         <div>
-        <Link to="/cart">
+        <Link to="/cart" onClick = {cartHandler}>
               Carrinho
               {cartItems.length > 0 && ( //Mostra o número de itens q tem no carrinho se houver item no carrinho
                 <span className="badge">{cartItems.length}</span>

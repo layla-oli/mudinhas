@@ -7,6 +7,7 @@ import {
     USER_REGISTER_FAIL,
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
+    USER_CLEAR_ERROR,
 } from '../constants/userConstants';
 
 export const register = (nome, email, senha) => async (dispatch) => {
@@ -51,4 +52,7 @@ export const signout = () => (dispatch) => {
     localStorage.removeItem('userInfo');
     localStorage.removeItem('cartItems');
     dispatch({ type: USER_SIGNOUT });
+};
+export const clearError = () => (dispatch) => {
+    dispatch({ type: USER_CLEAR_ERROR });
 };
