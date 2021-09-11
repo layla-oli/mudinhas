@@ -8,13 +8,16 @@ export default function PlaceOrderScreen(props) {
   if (!cart.paymentMethod) {
     props.history.push('/payment');
   }
-  const toPrice = (num) => Number(num.toFixed(2)); // 5.123 => "5.12" => 5.12
+  const toPrice = (num) => Number(num.toFixed(2)); // limita em até duas casas decimais e converte para número
+  //Calculando preço total dos items
   cart.itemsPrice = toPrice(
     cart.cartItems.reduce((a, c) => a + c.qty * c.preco, 0)
   );
-  cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
-  cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
-  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
+  //Calculando o frete
+  cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10 + 0.25*cart.itemsPrice); //frete grátis acima de 100 reais 
+  //Calculando preço total
+  cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
+ 
   const placeOrderHandler = () => {
     // TODO: dispatch place order action
   };
@@ -29,9 +32,8 @@ export default function PlaceOrderScreen(props) {
                 <h2>Informações de Envio</h2>
                 <p>
                   <strong>Nome:</strong> {cart.shippingAddress.fullName} <br />
-                  <strong>Endereço: </strong> {cart.shippingAddress.address}, ,{cart.shippingAddress.number}
+                  <strong>Endereço: </strong> {cart.shippingAddress.address},{cart.shippingAddress.number}, 
                   {cart.shippingAddress.city}, {cart.shippingAddress.postalCode}
-                  
                 </p>
               </div>
             </li>
@@ -93,10 +95,6 @@ export default function PlaceOrderScreen(props) {
                 </div>
               </li>
               <li>
-                <div className="row">
-                  <div>Taxa</div>
-                  <div>R${cart.taxPrice.toFixed(2)}</div>
-                </div>
               </li>
               <li>
                 <div className="row">

@@ -2,6 +2,7 @@ import express from 'express';
 import userRouter from './routers/userRouter.js';
 import mongoose from 'mongoose';
 import productRouter from './routers/productRouter.js';
+import orderRouter from './routers/orderRouter.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -20,11 +21,12 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/mudinhas', {
 
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
 
 app.get('/', (req, res) => {
   res.send('Servidor está pronto');
 });
-app.use((err, req, res, next) => { //Identifica erros ocorridos e envia uma msg de erro para o frontend
+app.use((err, req, res, next) => { //Identifica erros ocorridos e envia uma msg de erro 
   res.status(500).send({ message: err.message });
 });
 

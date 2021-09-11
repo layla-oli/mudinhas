@@ -6,10 +6,10 @@ import CheckoutSteps from '../components/CheckoutSteps';
 export default function PaymentMethodScreen(props) {
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
-  if (!shippingAddress.address) {
+  if (!shippingAddress.address) { //se não houver informações sobre o endereço de envio redireciona para tela de endereço de envio
     props.history.push('/shipping');
   }
-  const [paymentMethod, setPaymentMethod] = useState('PayPal');
+  const [paymentMethod, setPaymentMethod] = useState('Pix');
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
@@ -42,7 +42,7 @@ export default function PaymentMethodScreen(props) {
             <input
               type="radio"
               id="credito"
-              value="Credito"
+              value="Cartão de Crédito"
               name="paymentMethod"
               required
               onChange={(e) => setPaymentMethod(e.target.value)}

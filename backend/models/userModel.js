@@ -11,5 +11,5 @@ const userSchema = new mongoose.Schema(
     timestamps: true,// informações de quando um registro foi criado e alterado.
   }
 );
-const User = mongoose.model('Usuario', userSchema);
+const User = mongoose.model('User', userSchema);
 export default User;
