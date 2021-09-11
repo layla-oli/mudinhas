@@ -8,6 +8,7 @@ import { signout, clearError } from './actions/userActions';
 import SigninScreen from './screens/SigninScreen';
 import RegisterScreen from './screens/RegisterScreen.js';
 import ShippingAddressScreen from './screens/ShippingAddressScreen';
+import PaymentMethodScreen from './screens/PaymentMethodScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);//hook para pegar o estado do carrinho no store
@@ -64,6 +65,7 @@ function App() {
     <Route path="/signin" component={SigninScreen}></Route> 
     <Route path="/register" component={RegisterScreen}></Route>
     <Route path="/shipping" component={ShippingAddressScreen}></Route>
+    <Route path="/payment" component={PaymentMethodScreen}></Route>
     </main>
     <footer>
 

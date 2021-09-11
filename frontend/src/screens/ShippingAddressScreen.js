@@ -68,7 +68,7 @@ export default function ShippingAddressScreen(props) {
           <label htmlFor="number">Número/Quadra,Lote</label>
           <input
             type="text"
-            id="country"
+            id="number"
             placeholder="Digitem o número ou Quadra/Lote do seu endereço"
             value={number}
             onChange={(e) => setNumber(e.target.value)}

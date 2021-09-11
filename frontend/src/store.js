@@ -23,6 +23,7 @@ const initialState = {
     shippingAddress: localStorage.getItem('shippingAddress')
       ? JSON.parse(localStorage.getItem('shippingAddress'))
       : {},
+      paymentMethod: 'Pix',
   },
 };
 //"agrupando" os reducers criados nos arquivos de Reducers
