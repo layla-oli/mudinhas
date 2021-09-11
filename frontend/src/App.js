@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signout, clearError } from './actions/userActions';
 import SigninScreen from './screens/SigninScreen';
 import RegisterScreen from './screens/RegisterScreen.js';
+import ShippingAddressScreen from './screens/ShippingAddressScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);//hook para pegar o estado do carrinho no store
@@ -62,6 +63,7 @@ function App() {
     <Route path="/" component={HomeScreen} exact></Route>
     <Route path="/signin" component={SigninScreen}></Route> 
     <Route path="/register" component={RegisterScreen}></Route>
+    <Route path="/shipping" component={ShippingAddressScreen}></Route>
     </main>
     <footer>
 

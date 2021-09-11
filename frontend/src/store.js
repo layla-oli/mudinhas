@@ -20,6 +20,9 @@ const initialState = {
     cartItems: localStorage.getItem('cartItems') //iniciando o carrinho já com os itens armazenados na localStorage do usuário
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [],
+    shippingAddress: localStorage.getItem('shippingAddress')
+      ? JSON.parse(localStorage.getItem('shippingAddress'))
+      : {},
   },
 };
 //"agrupando" os reducers criados nos arquivos de Reducers
