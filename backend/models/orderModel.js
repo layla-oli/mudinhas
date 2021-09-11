@@ -4,10 +4,11 @@ const orderSchema = new mongoose.Schema(
   {
     orderItems: [
       {
-        nome_popular: { type: String, required: true, unique: true },
+        nome_popular: { type: String, required: true, unique: false },
         nome_cientifico: { type: String, required: true, unique: false },
         imagem: { type: String, required: true },
         preco: { type: Number, required: true },
+        qty: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: 'Product',

@@ -81,7 +81,7 @@ export default function OrderScreen(props) {
                         </div>
 
                         <div>
-                          {item.qty} x ${item.preco} = ${item.qty * item.preco}
+                          {item.qty} x R${item.preco} = R${item.qty * item.preco}
                         </div>
                       </div>
                     </li>
