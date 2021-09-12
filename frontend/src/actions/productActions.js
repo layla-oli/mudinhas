@@ -17,13 +17,17 @@ import {
   PRODUCT_DELETE_SUCCESS,
 } from '../constants/productConstants';
 //Ações para listar os products, fazendo a requisição com Axios para o backend
-export const listProducts = () => async (dispatch) => {
+export const listProducts = ({
+ nome = ''
+}) => async (dispatch) => {
   dispatch({
     type: PRODUCT_LIST_REQUEST,
   });
   try {
-    const { data } = await Axios.get('/api/products');
-    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+    const { data } = await Axios.get(
+      `/api/products?nome=${nome}`
+    );
+    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data.products });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
   }

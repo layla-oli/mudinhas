@@ -25,7 +25,7 @@ export default function ProductScreen(props) {
             {loading ? (
                 <LoadingBox></LoadingBox> //enquanto estiver carregando, usa o componente LoadingBox
             ) : error ? (
-                <MessageBox variant="danger">{error}</MessageBox>//se ouve um erro, usa o componente MessageBox
+                <MessageBox variant="danger">{error}</MessageBox>//se houve um erro, usa o componente MessageBox
                 //se nenhum do dois acontecer, renderiza os detalhes do product
             ) : (
                 <div>

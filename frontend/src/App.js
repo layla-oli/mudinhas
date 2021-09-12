@@ -14,6 +14,8 @@ import OrderScreen from './screens/OrderScreen';
 import AdminRoute from './components/AdminRoute';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
+import SearchBox from './components/SearchBox';
+import SearchScreen from './screens/SearchScreen';
 
 
 function App() {
@@ -38,7 +40,17 @@ function App() {
           <div>
             <Link className="brand" to="/" onClick={homeHandler}>Mudinhas e afins</Link>
             <br /><span><Link className="subtitle" to="/" onClick={homeHandler}>Horto online</Link></span>
+            <br /><span>
+              <div>
+                <Route
+                  render={({ history }) => (
+                    <SearchBox history={history}></SearchBox>
+                  )}
+                ></Route>
+              </div>
+            </span>
           </div>
+
           <div>
             <Link to="/cart" onClick={cartHandler}>
               Carrinho
@@ -104,6 +116,11 @@ function App() {
             path="/productlist"
             component={ProductListScreen}
           ></AdminRoute>
+           <Route
+            path="/search/nome/:nome?"
+            component={SearchScreen}
+            exact
+          ></Route>
         </main>
         <footer>
 

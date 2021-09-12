@@ -277,3 +277,15 @@ img.small {
 
 }*/
 
+/* Search */
+.search button {
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem ;
+  /*border-left: none;*/
+  margin-right: 0.5rem;
+}
+.search input {
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+ /* border-right: none;*/
+  margin-left: 0.5rem;
+}
+

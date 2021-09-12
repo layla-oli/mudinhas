@@ -6,13 +6,31 @@ import {isAdmin, isAuth} from '../utils.js';
 
 const productRouter = express.Router();
 //a partir de /api/products
-productRouter.get(
+/*productRouter.get(
   '/',// /api/products/ recupera os products do bd
   expressAsyncHandler(async (req, res) => {
     const products = await Product.find({});
     res.send(products);
   })
+);*/
+productRouter.get(
+  '/',
+  expressAsyncHandler(async (req, res) => {
+    const nome= req.query.nome|| '';
+
+    const nome_popularFilter = nome ? { nome_popular: { $regex: nome, $options: 'i' } } : {};
+    const nome_cientificoFilter = nome ? { nome_cientifico: { $regex: nome, $options: 'i' } } : {};
+    //opção i : Case insensitivity
+    const products = await Product.find({
+
+      $or:[ {...nome_popularFilter},
+      {...nome_cientificoFilter}
+    ]
+    })
+    res.send({ products });
+  })
 );
+
 
 productRouter.get(
   '/seed',// /api/products/seed insere os produtos do data.mjs no bd

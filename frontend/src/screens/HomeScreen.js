@@ -10,14 +10,14 @@ export default function HomeScreen() {
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
     useEffect(() => { //função executada uma única vez, quando o componente é renderizado
-        dispatch(listProducts());
+        dispatch(listProducts({}));
     }, [dispatch]);
     return (
         <div>
             {loading ? (
                 <LoadingBox></LoadingBox> //enquanto estiver carregando, usa o componente LoadingBox
             ) : error ? (
-                <MessageBox variant="danger">{error}</MessageBox>//se ouve um erro, usa o componente MessageBox
+                <MessageBox variant="danger">{error}</MessageBox>//se houve um erro, usa o componente MessageBox
                 //se nenhum do dois acontecer, renderiza os products
             ) : (<div className="row center">
                 {products.map((product) => (
