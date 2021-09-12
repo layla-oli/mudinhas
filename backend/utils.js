@@ -10,14 +10,14 @@ export const generateToken = (user) => {
     },
     process.env.JWT_SECRET, //chave usada para gerar os tokens
     {
-      expiresIn: '30d',
+      expiresIn: '1h',
     }
   );
 };
 //função middleware: tem acesso ao objeto de solicitação (req), o objeto de resposta (res),
 //e a próxima função de middleware no ciclo solicitação-resposta do aplicativo
 export const isAuth = (req, res, next) => { //checa se o usuário está autenticado 
-  const authorization = req.headers.authorization; // pega o campo authorization do cabeççho da requisição
+  const authorization = req.headers.authorization; // pega o campo authorization do cabeçalho da requisição
   if (authorization) {
     const token = authorization.slice(7, authorization.length); // Bearer XXXXXX => XXXXXX
     jwt.verify( //descriptografando o token
