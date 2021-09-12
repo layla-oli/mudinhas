@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { detailsProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import AdminRoute from '../components/AdminRoute';
 
 export default function ProductScreen(props) {
     const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function ProductScreen(props) {
 
     const addToCartHandler = () => {
         props.history.push(`/cart/${productId}?qty=${qty}`);
-      };
+    };
     return (
         <div>
             {loading ? (
@@ -73,13 +74,13 @@ export default function ProductScreen(props) {
                                                             onChange={(e) => setQty(e.target.value)}
                                                         >
                                                             {//limita até 100 products por vez 
-                                                            [...Array(product.estoque>100?100:product.estoque).keys()].map(
-                                                                (x) => (
-                                                                    <option key={x + 1} value={x + 1}>
-                                                                        {x + 1}
-                                                                    </option>
-                                                                )
-                                                            )}
+                                                                [...Array(product.estoque > 100 ? 100 : product.estoque).keys()].map(
+                                                                    (x) => (
+                                                                        <option key={x + 1} value={x + 1}>
+                                                                            {x + 1}
+                                                                        </option>
+                                                                    )
+                                                                )}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -95,13 +96,14 @@ export default function ProductScreen(props) {
                                         </>
                                         :
                                         <li>
-                                            <div className = "danger">
+                                            <div className="danger">
                                                 Produto fora de estoque
-                                                </div>
+                                            </div>
                                         </li>
 
                                     }
                                 </ul>
+
                             </div>
                         </div>
                     </div>

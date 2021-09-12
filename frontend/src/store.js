@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import {
   productDetailsReducer,
   productListReducer,
+  productCreateReducer,
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
@@ -39,6 +40,7 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
+  productCreate: productCreateReducer,
 
 });
 //criando o store

@@ -2,6 +2,7 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import data from '../data.mjs';
 import Product from '../models/productModel.js';
+import {isAdmin, isAuth} from '../utils.js';
 
 const productRouter = express.Router();
 //a partir de /api/products
@@ -31,6 +32,24 @@ productRouter.get(
     } else {
       res.status(404).send({ message: 'Produto não encontrado!' });
     }
+  })
+);
+//Criar Produto
+productRouter.post(
+  '/',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = new Product({
+      imagem:'/images/products/Pimpinella_anisum.jpg',
+      nome_popular: "Exemplo"+ Date.now(),
+      nome_cientifico: "Exemplo" ,
+      preco: 15.00,
+      estoque: 0,
+      detalhes: "detalhes"
+    });
+    const createdProduct = await product.save();
+    res.send({ message: 'Product Created', product: createdProduct });
   })
 );
 
