@@ -13,10 +13,8 @@ function findCEP(ev){
     .then ((res)=> res.json())
     .then((data) => {
       console.log(data);
-      document.getElementById('address').value= data.logradouro;
-      document.getElementById('district').value= data.bairro;
-      document.getElementById('city').value= data.localidade;
-      document.getElementById('state').value= data.uf;
+      document.getElementById('address').value= data.logradouro + ', ' + data.bairro ;
+      document.getElementById('city').value= data.localidade + ',' + data.uf;
     });
   }
 
@@ -34,13 +32,11 @@ export default function ShippingAddressScreen(props) {
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [number, setNumber] = useState(shippingAddress.number);
-  const [district, setDistrict] = useState(shippingAddress.district);
-  const [state, setState] = useState(shippingAddress.state);
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      saveShippingAddress({ fullName, address, city, postalCode, number, district, state })
+      saveShippingAddress({ fullName, address, city, postalCode, number })
     );
     props.history.push('/payment');
   };
@@ -97,7 +93,7 @@ export default function ShippingAddressScreen(props) {
           ></input>
         </div>
         <div>
-          <label htmlFor="city">Cidade</label>
+          <label htmlFor="city">Cidade e Estado</label>
           <input
             type="text"
             id="city"
@@ -107,30 +103,6 @@ export default function ShippingAddressScreen(props) {
             required
           ></input>
         </div>
-        <div>
-          <label htmlFor="district">Bairro</label>
-          <input
-            type="text"
-            id="district"
-            placeholder="Digite o Bairro"
-            value={district}
-            onChange={(e) => setDistrict(e.target.value)}
-            required
-          ></input>
-        </div>
-        <div>
-          <label htmlFor="state">Estado</label>
-          <input
-            type="text"
-            id="state"
-            placeholder="Digite o Estado"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-            required
-          ></input>
-        </div>
-       
-       
         <div>
           <label />
           <button className="primary" type="submit">
