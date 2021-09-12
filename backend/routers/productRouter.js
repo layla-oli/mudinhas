@@ -41,10 +41,10 @@ productRouter.post(
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = new Product({
-      imagem:'/images/products/Pimpinella_anisum.jpg',
-      nome_popular: "Exemplo"+ Date.now(),
-      nome_cientifico: "Exemplo" ,
-      preco: 15.00,
+      imagem:'/images/Novo_produto.jpg',
+      nome_popular: "Novo produto"+ Date.now(),
+      nome_cientifico: "Novo produto" ,
+      preco: 0.00,
       estoque: 0,
       detalhes: "detalhes"
     });
@@ -73,5 +73,20 @@ productRouter.put(
     }
   })
 );
+productRouter.delete(
+  '/:id',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      const deleteProduct = await product.remove();
+      res.send({ message: 'Produto removido com sucesso', product: deleteProduct });
+    } else {
+      res.status(404).send({ message: 'Produto não encontrado' });
+    }
+  })
+);
+
 
 export default productRouter;
