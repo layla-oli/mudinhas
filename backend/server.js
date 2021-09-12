@@ -4,6 +4,8 @@ import mongoose from 'mongoose';
 import productRouter from './routers/productRouter.js';
 import orderRouter from './routers/orderRouter.js';
 import dotenv from 'dotenv';
+import path from 'path';
+import uploadRouter from './routers/uploadRouter.js';
 
 dotenv.config();
 
@@ -19,9 +21,13 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/mudinhas', {
   //useCreateIndex: true,
 });
 
+app.use('/api/uploads', uploadRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 app.get('/', (req, res) => {
   res.send('Servidor está pronto');
@@ -32,5 +38,5 @@ app.use((err, req, res, next) => { //Identifica erros ocorridos e envia uma msg 
 
 const port = process.env.PORT || 5000; //Usa o valor da variavel de ambiente PORT se exitir, ou 5000 se não existir
 app.listen(port, () => {
-  console.log(`Serve at http://localhost:${port}`);
+  console.log(`Servindo em  http://localhost:${port}`);
 });
