@@ -20,7 +20,7 @@ export default function SearchScreen(props) {
     const filterOrdem = filter.ordem;
     if(!filterNome && filterOrdem!=="nenhum")
     return `/search/nome/ordem/${filterOrdem}`;
-    if (!filterNome && filterOrdem=="nenhum")
+    if (!filterNome && filterOrdem==="nenhum")
     return `/search/nome/`;
     return `/search/nome/${filterNome}/ordem/${filterOrdem}`;
   };
