@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { detailsProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import AdminRoute from '../components/AdminRoute';
+
 
 export default function ProductScreen(props) {
     const dispatch = useDispatch();

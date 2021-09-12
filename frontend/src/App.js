@@ -13,6 +13,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
 import AdminRoute from './components/AdminRoute';
 import ProductListScreen from './screens/ProductListScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
 
 
 function App() {
@@ -87,6 +88,11 @@ function App() {
         <main>
           <Route path="/cart/:id?" component={CartScreen}></Route> {/*Usa-se o ? para dizer que por o id é opcional, ou seja, sem o id vai para o carrinho */}
           <Route path="/product/:id" component={ProductScreen} exact></Route>
+          <Route
+            path="/product/:id/edit"
+            component={ProductEditScreen}
+            exact
+          ></Route>
           <Route path="/" component={HomeScreen} exact></Route>
           <Route path="/signin" component={SigninScreen}></Route>
           <Route path="/register" component={RegisterScreen}></Route>
