@@ -9,6 +9,9 @@ import {
   PRODUCT_CREATE_FAIL,
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_SUCCESS,
+  PRODUCT_UPDATE_REQUEST,
+  PRODUCT_UPDATE_SUCCESS,
+  PRODUCT_UPDATE_FAIL,
 } from '../constants/productConstants';
 //Ações para listar os products, fazendo a requisição com Axios para o backend
 export const listProducts = () => async (dispatch) => {
@@ -61,6 +64,24 @@ export const detailsProduct = (productId) => async (dispatch) => {
           ? error.response.data.message
           : error.message;
       dispatch({ type: PRODUCT_CREATE_FAIL, payload: message });
+    }
+  };
+  export const updateProduct = (product) => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_UPDATE_REQUEST, payload: product });
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    try {
+      const { data } = await Axios.put(`/api/products/${product._id}`, product, {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      });
+      dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: PRODUCT_UPDATE_FAIL, error: message });
     }
   };
 

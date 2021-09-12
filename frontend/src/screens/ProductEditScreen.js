@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { detailsProduct } from '../actions/productActions';
+import { detailsProduct, updateProduct } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 export default function ProductEditScreen(props) {
   const productId = props.match.params.id;
@@ -15,9 +16,19 @@ export default function ProductEditScreen(props) {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = productUpdate;
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!product || product._id !== productId) {
+    if (successUpdate) {
+      props.history.push('/productlist');
+    }
+    if (!product || product._id !== productId || successUpdate) {
+      dispatch({ type: PRODUCT_UPDATE_RESET });
       dispatch(detailsProduct(productId));
     } else {
       setNomePopular(product.nome_popular);
@@ -27,10 +38,20 @@ export default function ProductEditScreen(props) {
       setEstoque(product.estoque);
       setDetalhes(product.detalhes);
     }
-  }, [product, dispatch, productId]);
+  }, [product, dispatch, productId, successUpdate, props.history]);
   const submitHandler = (e) => {
     e.preventDefault();
-    // TODO: dispatch update product
+    dispatch(
+      updateProduct({
+        _id: productId,
+        nome_popular,
+        nome_cientifico,
+        preco,
+        imagem,
+        estoque,
+        detalhes,
+      })
+    );
   };
   return (
     <div>
@@ -38,6 +59,8 @@ export default function ProductEditScreen(props) {
         <div>
           <h1>Alterando o produto {productId}</h1>
         </div>
+        {loadingUpdate && <LoadingBox></LoadingBox>}
+        {errorUpdate && <MessageBox variant="danger">{errorUpdate}</MessageBox>}
         {loading ? (
           <LoadingBox></LoadingBox>
         ) : error ? (

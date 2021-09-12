@@ -4,6 +4,7 @@ import {
   productDetailsReducer,
   productListReducer,
   productCreateReducer,
+  productUpdateReducer,
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
@@ -14,6 +15,7 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
 } from './reducers/orderReducers';
+
 
 const initialState = {
   userSignin: {
@@ -41,6 +43,7 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   productCreate: productCreateReducer,
+  productUpdate: productUpdateReducer,
 
 });
 //criando o store
