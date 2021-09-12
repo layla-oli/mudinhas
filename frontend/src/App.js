@@ -48,6 +48,7 @@ function App() {
                   )}
                 ></Route>
               </div>
+              
             </span>
           </div>
 
@@ -118,6 +119,11 @@ function App() {
           ></AdminRoute>
            <Route
             path="/search/nome/:nome?"
+            component={SearchScreen}
+            exact
+          ></Route>
+          <Route
+            path="/search/nome/:nome?/ordem/:ordem"
             component={SearchScreen}
             exact
           ></Route>

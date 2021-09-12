@@ -7,13 +7,24 @@ import MessageBox from '../components/MessageBox';
 import Product from '../components/Product';
 
 export default function SearchScreen(props) {
-  const { nome = 'all' } = useParams();
+  const { nome = '', ordem = ''} = useParams(); //usado para pegar os parametros da rota atual, pegando o parametro nome especificamente
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
   useEffect(() => {
-    dispatch(listProducts({ nome: nome !== 'all' ? nome : '' }));
-  }, [dispatch, nome]);
+    dispatch(listProducts({ nome: nome , ordem: ordem}));
+  }, [dispatch, nome, ordem]);
+  //Função para retornar a url adequada ao filtro a ser aplicado
+  const getFilterUrl = (filter) => {
+    const filterNome = filter.nome || nome;
+    const filterOrdem = filter.ordem;
+    if(!filterNome && filterOrdem!=="nenhum")
+    return `/search/nome/ordem/${filterOrdem}`;
+    if (!filterNome && filterOrdem=="nenhum")
+    return `/search/nome/`;
+    return `/search/nome/${filterNome}/ordem/${filterOrdem}`;
+  };
+
   return (
     <div>
       <div className="row">
@@ -24,6 +35,21 @@ export default function SearchScreen(props) {
         ) : (
           <div>{products.length} Resultados</div>
         )}
+        <div>
+          Ordenar por:{' '}
+          <select
+            value={ordem}
+            onChange={(e) => {
+              props.history.push(getFilterUrl({ ordem: e.target.value }));
+            }}
+          >
+            <option value="nenhum">Nenhum filtro</option>
+            <option value="maior">Maiores preços primeiro</option>
+            <option value="menor">Menores preços primeiro</option>
+            <option value="az">Nome Popular: A-Z</option>
+            <option value="za">Nome Popular: Z-A</option>
+          </select>
+        </div>
       </div>
       <div className="row top">
         <div className="col-3">

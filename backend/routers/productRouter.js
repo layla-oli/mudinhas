@@ -2,7 +2,7 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import data from '../data.mjs';
 import Product from '../models/productModel.js';
-import {isAdmin, isAuth} from '../utils.js';
+import { isAdmin, isAuth } from '../utils.js';
 
 const productRouter = express.Router();
 //a partir de /api/products
@@ -16,17 +16,27 @@ const productRouter = express.Router();
 productRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
-    const nome= req.query.nome|| '';
-
+    const nome = req.query.nome || '';
+    const ordem = req.query.ordem|| '';
+    const sortOrder = 
+    ordem === 'menor'
+    ? { preco: 1 }
+    : ordem === 'maior'
+    ? { preco: -1 }
+    : ordem === 'az'
+    ? { nome_popular: 1 }
+    : ordem === 'za'
+    ? { nome_popular: -1 }
+    : { _id: 1 };
     const nome_popularFilter = nome ? { nome_popular: { $regex: nome, $options: 'i' } } : {};
     const nome_cientificoFilter = nome ? { nome_cientifico: { $regex: nome, $options: 'i' } } : {};
     //opção i : Case insensitivity
     const products = await Product.find({
 
-      $or:[ {...nome_popularFilter},
-      {...nome_cientificoFilter}
-    ]
-    })
+      $or: [{ ...nome_popularFilter },
+      { ...nome_cientificoFilter }
+      ]
+    }).sort(sortOrder);
     res.send({ products });
   })
 );
@@ -59,9 +69,9 @@ productRouter.post(
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = new Product({
-      imagem:'/images/Novo_produto.jpg',
-      nome_popular: "Novo produto"+ Date.now(),
-      nome_cientifico: "Novo produto" ,
+      imagem: '/images/Novo_produto.jpg',
+      nome_popular: "Novo produto" + Date.now(),
+      nome_cientifico: "Novo produto",
       preco: 0.00,
       estoque: 0,
       detalhes: "detalhes"

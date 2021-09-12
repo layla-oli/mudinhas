@@ -18,14 +18,15 @@ import {
 } from '../constants/productConstants';
 //Ações para listar os products, fazendo a requisição com Axios para o backend
 export const listProducts = ({
- nome = ''
+ nome = '',
+ ordem = '',
 }) => async (dispatch) => {
   dispatch({
     type: PRODUCT_LIST_REQUEST,
   });
   try {
     const { data } = await Axios.get(
-      `/api/products?nome=${nome}`
+      `/api/products?nome=${nome}&ordem=${ordem}`
     );
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data.products });
   } catch (error) {
