@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
   "name": "mudinhas",
   "type": "module",
   "version": "1.0.0",
@@ -25,5 +26,10 @@
     "eslint-plugin-react": "^7.25.1",
     "nodemon": "^2.0.12",
     "ws": "3.3.2"
+=======
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.25.1"
+>>>>>>> Stashed changes
   }
 }
