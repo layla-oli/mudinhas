@@ -32,6 +32,7 @@ header{
   grid-area: header;
   background-color: rgb(255, 255, 255);
 }
+
 main{
   grid-area: main;
   padding: 1rem;
@@ -47,9 +48,6 @@ h2{
   padding: 1rem 0;
 }
 
-.subtitle{
-  font-size: medium;
-}
 
 a{
   text-decoration: none;
@@ -58,6 +56,11 @@ a{
 a:hover{
   color: #8bd8ae;
 }
+
+a.subtitle{
+  color: black;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -125,7 +128,6 @@ img{
 }
 
 img.medium{ /*AQUI */
-  /*max-width: 30rem;*/
   object-fit: cover;
   width: 100%;
   height: 250px;
@@ -144,6 +146,7 @@ img.large {
   border: 0.1rem gray solid;
   border-radius: 0.5rem;
   margin: 1rem;
+  background-color: #c4ebab;
 }
 
 .card-body{
