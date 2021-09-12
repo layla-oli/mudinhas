@@ -1,24 +1,42 @@
 import express from 'express';
-import data from '../frontend/src/data.mjs'; /*mudar a localização de data.js dps*/
+import userRouter from './routers/userRouter.js';
+import mongoose from 'mongoose';
+import productRouter from './routers/productRouter.js';
+import orderRouter from './routers/orderRouter.js';
+import dotenv from 'dotenv';
+import path from 'path';
+import uploadRouter from './routers/uploadRouter.js';
+
+dotenv.config();
 
 const app = express();
 
-app.get('/api/produtos/:id', (req, res) => {
-  const product = data.produtos.find((x) => x.id === Number(req.params.id));
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: 'Produto Não Encontrado' });
-  }
-});
-app.get('/api/produtos', (req, res) => {
-  res.send(data.produtos);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//Conexão com o banco de dados
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/mudinhas', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  //useCreateIndex: true,
 });
 
+app.use('/api/uploads', uploadRouter);
+app.use('/api/products', productRouter);
+app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
+
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
 app.get('/', (req, res) => {
-  res.send('Server is ready');
+  res.send('Servidor está pronto');
 });
-const port = process.env.PORT || 5000; //define a variavel de ambiente PORT com o valor 5000
+app.use((err, req, res, next) => { //Identifica erros ocorridos e envia uma msg de erro 
+  res.status(500).send({ message: err.message });
+});
+
+const port = process.env.PORT || 5000; //Usa o valor da variavel de ambiente PORT se exitir, ou 5000 se não existir
 app.listen(port, () => {
-  console.log(`Serve at http://localhost:${port}`);
+  console.log(`Servindo em  http://localhost:${port}`);
 });
