@@ -3,6 +3,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
+function findCEP(ev){
+  const {value} = ev.target;
+  const cep = value?.replace(/[^0-9]/g, '')
+  if(cep?.length !== 8){
+    return;
+  }
+  fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then ((res)=> res.json())
+    .then((data) => {
+      console.log(data);
+      document.getElementById('address').value= data.logradouro;
+      document.getElementById('district').value= data.bairro;
+      document.getElementById('city').value= data.localidade;
+      document.getElementById('state').value= data.uf;
+    });
+  }
+
 export default function ShippingAddressScreen(props) {
   const userSignin = useSelector((state) => state.userSignin);//hook para pegar o estado de login de usuário no store
   const { userInfo } = userSignin;
@@ -17,11 +34,13 @@ export default function ShippingAddressScreen(props) {
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [number, setNumber] = useState(shippingAddress.number);
+  const [district, setDistrict] = useState(shippingAddress.district);
+  const [state, setState] = useState(shippingAddress.state);
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      saveShippingAddress({ fullName, address, city, postalCode, number })
+      saveShippingAddress({ fullName, address, city, postalCode, number, district, state })
     );
     props.history.push('/payment');
   };
@@ -52,6 +71,7 @@ export default function ShippingAddressScreen(props) {
             value={postalCode}
             onChange={(e) => setPostalCode(e.target.value)}
             required
+            onBlur={(ev)=>findCEP(ev)}
           ></input>
         </div>
         <div>
@@ -70,7 +90,7 @@ export default function ShippingAddressScreen(props) {
           <input
             type="text"
             id="number"
-            placeholder="Digitem o número ou Quadra/Lote do seu endereço"
+            placeholder="Digite o número ou Quadra/Lote do seu endereço"
             value={number}
             onChange={(e) => setNumber(e.target.value)}
             required
@@ -84,6 +104,28 @@ export default function ShippingAddressScreen(props) {
             placeholder="Digite a  cidade"
             value={city}
             onChange={(e) => setCity(e.target.value)}
+            required
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="district">Bairro</label>
+          <input
+            type="text"
+            id="district"
+            placeholder="Digite o Bairro"
+            value={district}
+            onChange={(e) => setDistrict(e.target.value)}
+            required
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="state">Estado</label>
+          <input
+            type="text"
+            id="state"
+            placeholder="Digite o Estado"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
             required
           ></input>
         </div>
