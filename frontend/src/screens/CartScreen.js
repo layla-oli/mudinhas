@@ -38,7 +38,7 @@ export default function CartScreen(props) {
           </MessageBox>
         ) : (
           <ul>
-            {cartItems.map((item) => item?(
+            {cartItems.map((item) => (
               <li key={item.product}>
                 <div className="row">
                   <div>
@@ -86,8 +86,7 @@ export default function CartScreen(props) {
                   </div>
                 </div>
               </li>
-            ):<div></div>
-            )}
+            ))}
           </ul>
         )}
       </div>

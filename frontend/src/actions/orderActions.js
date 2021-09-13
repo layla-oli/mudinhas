@@ -60,9 +60,6 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
     getState
   ) => {
     dispatch({ type: ORDER_PAY_REQUEST, payload: { order } });
-    const {
-      userSignin: { userInfo },
-    } = getState();
     try {
       const { data } = Axios.post(`/api/orders/${order._id}/pay`);
       dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
