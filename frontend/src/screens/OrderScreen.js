@@ -1,20 +1,31 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { detailsOrder } from '../actions/orderActions';
+import { detailsOrder, payOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { ORDER_PAY_RESET } from '../constants/orderConstants';
 
 export default function OrderScreen(props) {
   const orderId = props.match.params.id;
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
   const dispatch = useDispatch();
-
+  const orderPay = useSelector((state) => state.orderPay);
+  const {
+    loading: loadingPay,
+    error: errorPay,
+    success: successPay,
+  } = orderPay;
   useEffect(() => {
-    dispatch(detailsOrder(orderId));
-  }, [dispatch, orderId]);
-
+    if (!order || successPay || (order && order._id !== orderId)) {
+      dispatch({ type: ORDER_PAY_RESET })
+      dispatch(detailsOrder(orderId));
+    }
+  }, [dispatch, order, orderId, successPay]);
+  const successPaymentHandler = () => {
+    dispatch(payOrder(order));
+  };
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
@@ -34,7 +45,7 @@ export default function OrderScreen(props) {
                   {order.shippingAddress.number},
                   {order.shippingAddress.city},{' '}
                   {order.shippingAddress.postalCode},
-                  
+
                 </p>
                 {order.isDelivered ? (
                   <MessageBox variant="success">
@@ -53,7 +64,7 @@ export default function OrderScreen(props) {
                 </p>
                 {order.isPaid ? (
                   <MessageBox variant="success">
-                   Pago em {order.paidAt}
+                    Já foi pago 
                   </MessageBox>
                 ) : (
                   <MessageBox variant="danger">Ainda não foi pago</MessageBox>
@@ -119,6 +130,20 @@ export default function OrderScreen(props) {
                   </div>
                 </div>
               </li>
+              
+              {!order.isPaid && (
+                <li>
+                  {
+                    <>
+                      {errorPay && (
+                        <MessageBox variant="danger">{errorPay}</MessageBox>
+                      )}
+                      {loadingPay && <LoadingBox></LoadingBox>}
+                      <button className = "primary" onClick= {successPaymentHandler}> Pagar </button>
+                    </>
+                  }
+                </li>
+                 )}
             </ul>
           </div>
         </div>

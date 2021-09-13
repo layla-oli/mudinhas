@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
-import mg from 'mailgun-js';
-
+import nodemailer from 'nodemailer';
 export const generateToken = (user) => {
   return jwt.sign(
     {
@@ -44,16 +43,12 @@ export const isAdmin = (req, res, next) => {
     res.status(401).send({ message: 'Token de Admin inválido' });
   }
 };
-export const mailgun = () =>
-  mg({
-    apiKey: process.env.MAILGUN_API_KEY,
-    domain: process.env.MAILGUN_DOMIAN,
-  });
+
 //Gera um email a partir de um pedido
-export const payOrderEmailTemplate = (order) => {
+export const  payOrderEmailTemplate = (order, user) => {
   return `<h1>Obrigado por comprar conosco! </h1>
   <p>
-  Olá, ${order.user.name},</p>
+  Olá, ${user.nome},</p>
   <p>Seu pedido foi processado com sucesso.</p>
   <h2>[Pedido ${order._id}] (${order.createdAt.toString().substring(0, 10)})</h2>
   <table>
@@ -70,7 +65,7 @@ export const payOrderEmailTemplate = (order) => {
     <tr>
     <td>${item.nome_popular}</td>
     <td align="center">${item.qty}</td>
-    <td align="right"> $${item.preco.toFixed(2)}</td>
+    <td align="right"> R$${item.preco.toFixed(2)}</td>
     </tr>
   `
     )
@@ -87,7 +82,7 @@ export const payOrderEmailTemplate = (order) => {
   </tr>
   <tr>
   <td colspan="2"><strong>Preço Total:</strong></td>
-  <td align="right"><strong> $${order.totalPrice.toFixed(2)}</strong></td>
+  <td align="right"><strong> R$${order.totalPrice.toFixed(2)}</strong></td>
   </tr>
   <tr>
   <td colspan="2">Método de Pagamento:</td>
@@ -98,8 +93,8 @@ export const payOrderEmailTemplate = (order) => {
   <p>
   ${order.shippingAddress.fullName},<br/>
   ${order.shippingAddress.address},<br/>
+  ${order.shippingAddress.number},<br/>
   ${order.shippingAddress.city},<br/>
-  ${order.shippingAddress.country},<br/>
   ${order.shippingAddress.postalCode}<br/>
   </p>
   <hr/>
@@ -108,3 +103,11 @@ export const payOrderEmailTemplate = (order) => {
   </p>
   `;
 };
+
+export const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+  user: 'mudinhaseafins@gmail.com',
+  pass: 'progwebprogweb',
+  }
+  });

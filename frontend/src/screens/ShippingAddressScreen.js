@@ -3,20 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
-function findCEP(ev){
-  const {value} = ev.target;
-  const cep = value?.replace(/[^0-9]/g, '')
-  if(cep?.length !== 8){
-    return;
-  }
-  fetch(`https://viacep.com.br/ws/${cep}/json/`)
-    .then ((res)=> res.json())
-    .then((data) => {
-      console.log(data);
-      document.getElementById('address').value= data.logradouro + ', ' + data.bairro ;
-      document.getElementById('city').value= data.localidade + ',' + data.uf;
-    });
-  }
+
 
 export default function ShippingAddressScreen(props) {
   const userSignin = useSelector((state) => state.userSignin);//hook para pegar o estado de login de usuário no store
@@ -40,6 +27,22 @@ export default function ShippingAddressScreen(props) {
     );
     props.history.push('/payment');
   };
+  function findCEP(ev){
+    const {value} = ev.target;
+    const cep = value?.replace(/[^0-9]/g, '')
+    if(cep?.length !== 8){
+      return;
+    }
+    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+      .then ((res)=> res.json())
+      .then((data) => {
+        console.log(data);
+        document.getElementById('address').value= data.logradouro + ', ' + data.bairro ;
+        document.getElementById('city').value= data.localidade + ',' + data.uf;
+        setAddress(data.logradouro + ', ' + data.bairro );
+        setCity(data.localidade + ',' + data.uf);
+      });
+    }
   return (
     <div>
       <CheckoutSteps step1 step2></CheckoutSteps>
