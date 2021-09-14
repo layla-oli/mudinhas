@@ -47,7 +47,7 @@ export const updateItemCart = (item) => async (dispatch, getState) => {
     const { data } = await Axios.get(`/api/products/${item.product}`);
     if (data.estoque === 0)
       dispatch({ type: CART_REMOVE_ITEM, payload: item.product });
-    else if (item.estoque !== data.estoque) {
+    else if (item.estoque !== data.estoque || item.preco !== data.preco) {
       dispatch({
         type: CART_UPDATE_ITEM,
         payload: {
