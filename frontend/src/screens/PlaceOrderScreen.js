@@ -32,12 +32,7 @@ export default function PlaceOrderScreen(props) {
             dispatch(
                 updateProductNoAuth({
                   _id: x.product,
-                  nome_popular: x.nome_popular,
-                  nome_cientifico: x.nome_cientifico,
-                  preco: x.preco,
-                  imagem: x.imagem,
                   estoque: x.estoque-x.qty,
-                  detalhes: x.detalhes,
                 })
               );
         });
