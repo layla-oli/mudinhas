@@ -43,10 +43,8 @@ export const savePaymentMethod = (data) => (dispatch) => {
   dispatch({ type: CART_SAVE_PAYMENT_METHOD, payload: data });
 };
 export const updateItemCart = (item) => async (dispatch, getState) => {
-  console.log("ABACATE");
   try {
     const { data } = await Axios.get(`/api/products/${item.product}`);
-    console.log("Produto"+ data.nome_cientifico);
     if (data.estoque === 0)
       dispatch({ type: CART_REMOVE_ITEM, payload: item.product });
     else if (item.estoque !== data.estoque) {
@@ -59,6 +57,7 @@ export const updateItemCart = (item) => async (dispatch, getState) => {
           nome_popular: data.nome_popular,
           nome_cientifico: data.nome_cientifico,
           estoque: data.estoque,
+          detalhes: data.detalhes,
           qty: item.qty <= data.estoque ? item.qty : data.estoque
         },
       });

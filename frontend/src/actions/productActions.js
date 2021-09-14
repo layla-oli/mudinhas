@@ -92,6 +92,19 @@ export const detailsProduct = (productId) => async (dispatch) => {
       dispatch({ type: PRODUCT_UPDATE_FAIL, error: message });
     }
   };
+  export const updateProductNoAuth = (product) => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_UPDATE_REQUEST, payload: product });
+    try {
+      const { data } = await Axios.put(`/api/products/estoque/${product._id}`, product);
+      dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: PRODUCT_UPDATE_FAIL, error: message });
+    }
+  };
 
   export const deleteProduct = (productId) => async (dispatch, getState) => {
     dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });

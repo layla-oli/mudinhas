@@ -101,6 +101,20 @@ productRouter.put(
     }
   })
 );
+productRouter.put(
+  '/estoque/:id',
+  expressAsyncHandler(async (req, res) => {
+    const productId = req.params.id;
+    const product = await Product.findById(productId);
+    if (product) {
+      product.estoque = req.body.estoque;
+      const updatedProduct = await product.save();
+      res.send({ message: 'Estoque do produto alterado com sucesso', product: updatedProduct });
+    } else {
+      res.status(404).send({ message: 'Produto não encontrado' });
+    }
+  })
+);
 productRouter.delete(
   '/:id',
   isAuth,

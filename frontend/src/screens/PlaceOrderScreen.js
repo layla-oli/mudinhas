@@ -6,6 +6,7 @@ import { createOrder } from '../actions/orderActions';
 import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import {updateProductNoAuth} from '../actions/productActions';
 
 export default function PlaceOrderScreen(props) {
     const cart = useSelector((state) => state.cart);
@@ -27,6 +28,19 @@ export default function PlaceOrderScreen(props) {
     const dispatch = useDispatch();
     
     const placeOrderHandler = () => {
+        cart.cartItems.forEach((x)=>{
+            dispatch(
+                updateProductNoAuth({
+                  _id: x.product,
+                  nome_popular: x.nome_popular,
+                  nome_cientifico: x.nome_cientifico,
+                  preco: x.preco,
+                  imagem: x.imagem,
+                  estoque: x.estoque-x.qty,
+                  detalhes: x.detalhes,
+                })
+              );
+        });
         dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
     };
     useEffect(() => {
