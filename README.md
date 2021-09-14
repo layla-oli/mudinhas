@@ -25,6 +25,6 @@ $ npm start
 
 Basta rodar no navegador os seguintes links: 
 
-    - Usuários (com uma conta de administrador): http://localhost:5000/api/users/seed
+   - Usuários (com uma conta de administrador): ```http://localhost:5000/api/users/seed```
     
-    - Produtos: http://localhost:5000/api/products/seed
+   - Produtos: ```http://localhost:5000/api/products/seed```
