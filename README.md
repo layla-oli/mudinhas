@@ -22,6 +22,9 @@ $ npm install
 $ npm start
 ```
 ### para popular o banco de dados
+
 Basta rodar no navegador os seguintes links: 
+
     - Usuários (com uma conta de administrador): http://localhost:5000/api/users/seed
+    
     - Produtos: http://localhost:5000/api/products/seed
