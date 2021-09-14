@@ -28,6 +28,7 @@ export default function PlaceOrderScreen(props) {
     const dispatch = useDispatch();
     
     const placeOrderHandler = () => {
+        dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
         cart.cartItems.forEach((x)=>{
             dispatch(
                 updateProductNoAuth({
@@ -36,7 +37,7 @@ export default function PlaceOrderScreen(props) {
                 })
               );
         });
-        dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+        
     };
     useEffect(() => {
         if (success) {
