@@ -25,7 +25,7 @@ export const isAuth = (req, res, next) => { //checa se o usuário está autentic
       process.env.JWT_SECRET, //chave usada para gerar os tokens
       (err, decode) => {
         if (err) {
-          res.status(401).send({ message: 'Token Inválido' });
+          res.status(401).send({ message: 'Aconteceu um erro ao autenticar o usuário, por favor relogue' });
         } else {
           req.user = decode; //decode contém os dados descriptografados do token: os dados do usuário
           next(); //chama a próxima função middleware, passada no parâmetro

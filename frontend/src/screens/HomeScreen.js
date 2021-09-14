@@ -9,7 +9,7 @@ export default function HomeScreen() {
     const dispatch = useDispatch();
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
-    useEffect(() => { //função executada uma única vez, quando o componente é renderizado
+    useEffect(() => { //função executada toda vez que o componente é renderizado
         dispatch(listProducts({}));
     }, [dispatch]);
     return (

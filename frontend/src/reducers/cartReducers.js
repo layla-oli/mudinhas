@@ -4,6 +4,7 @@ import {
   CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYMENT_METHOD,
   CART_EMPTY,
+  CART_UPDATE_ITEM,
 } from '../constants/cartConstants';
 
 export const cartReducer = (state = { cartItems: [] }, action) => {
@@ -33,6 +34,14 @@ export const cartReducer = (state = { cartItems: [] }, action) => {
       return { ...state, paymentMethod: action.payload };
     case CART_EMPTY:
       return { ...state, cartItems: [] };
+    case CART_UPDATE_ITEM:
+      const itemUpdated = action.payload; //pega o item atualizado
+        return {
+          ...state,//não muda as outras propriedades
+          cartItems: state.cartItems.map((x) =>//substitui o item antigo pelo novo
+            x.product === itemUpdated.product ? itemUpdated : x
+          ),
+        };
     default:
       return state;
   }
