@@ -8,9 +8,8 @@ import path from 'path';
 import uploadRouter from './routers/uploadRouter.js';
 
 dotenv.config();
-
+//Criando e configurando nosso servidor
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,13 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/mudinhas', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  //useCreateIndex: true,
+
 });
 
-app.use('/api/uploads', uploadRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
+app.use('/api/uploads', uploadRouter);
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
@@ -32,7 +31,7 @@ app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.get('/', (req, res) => {
   res.send('Servidor está pronto');
 });
-app.use((err, req, res, next) => { //Identifica erros ocorridos e envia uma msg de erro 
+app.use((err, req, res) => { //Identifica erros ocorridos e envia uma msg de erro 
   res.status(500).send({ message: err.message });
 });
 

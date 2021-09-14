@@ -6,13 +6,7 @@ import { isAdmin, isAuth } from '../utils.js';
 
 const productRouter = express.Router();
 //a partir de /api/products
-/*productRouter.get(
-  '/',// /api/products/ recupera os products do bd
-  expressAsyncHandler(async (req, res) => {
-    const products = await Product.find({});
-    res.send(products);
-  })
-);*/
+
 productRouter.get(
   '/',
   expressAsyncHandler(async (req, res) => {
@@ -80,6 +74,7 @@ productRouter.post(
     res.send({ message: 'Produto criado com sucesso', product: createdProduct });
   })
 );
+//Alterar um produto
 productRouter.put(
   '/:id',
   isAuth,
@@ -101,6 +96,7 @@ productRouter.put(
     }
   })
 );
+//Alterar o estoque sem autenticação de admin
 productRouter.put(
   '/estoque/:id',
   expressAsyncHandler(async (req, res) => {

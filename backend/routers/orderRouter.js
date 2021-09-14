@@ -8,7 +8,7 @@ import {
   transporter,
 } from '../utils.js';
 const orderRouter = express.Router();
-
+// Criar um pedido
 orderRouter.post(
   '/',
   isAuth,
@@ -32,6 +32,7 @@ orderRouter.post(
     }
   })
 );
+//Pega um pedido pelo id
 orderRouter.get(
     '/:id',
     isAuth,
@@ -44,6 +45,7 @@ orderRouter.get(
       }
     })
   );
+  //Faz o pagamento do pedido
   orderRouter.post(
     '/:id/pay',
     expressAsyncHandler(async (req, res) => {
