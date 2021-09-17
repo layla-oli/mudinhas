@@ -41,4 +41,5 @@ Basta rodar no navegador os seguintes links:
 - https://viacep.com.br/
 - https://expressjs.com/pt-br/
 - https://nodemailer.com/about/
+- https://viacep.com.br/exemplo/javascript/
 - https://axios-http.com/ptbr/
