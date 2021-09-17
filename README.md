@@ -28,3 +28,17 @@ Basta rodar no navegador os seguintes links:
    - Usuários (com uma conta de administrador): ```http://localhost:5000/api/users/seed```
     
    - Produtos: ```http://localhost:5000/api/products/seed```
+
+## Referências e links importantes
+
+- https://nodejs.org/en/
+- https://pt-br.reactjs.org/
+- https://react-redux.js.org/
+- https://mongoosejs.com/
+- https://codingwithbasir.com/
+- https://www.youtube.com/c/CodingwithBasir
+- https://www.youtube.com/c/ViniciusDacal/featured
+- https://viacep.com.br/
+- https://expressjs.com/pt-br/
+- https://nodemailer.com/about/
+- https://axios-http.com/ptbr/
